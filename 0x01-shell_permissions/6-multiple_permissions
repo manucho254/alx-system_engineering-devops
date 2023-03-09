@@ -1,5 +1,2 @@
 #!/bin/bash
-
-chmod 100 helo
-chmod 010 helo
-chmod u+x helo
+chmod ug+xo+x helo
