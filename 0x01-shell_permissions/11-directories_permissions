@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod -R --preserve-root ugo+x .
+chmod ugo+X .
