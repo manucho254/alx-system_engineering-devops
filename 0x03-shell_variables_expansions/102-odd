@@ -1,2 +1,2 @@
 #!/bin/bash
-cat | awk "NR%2==1" "..."
+awk -F":" "NR%2==1"
