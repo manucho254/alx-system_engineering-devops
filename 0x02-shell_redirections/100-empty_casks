@@ -1,2 +1,2 @@
 #!/bin/bash
-find * -type d,f -empty -printf "%f\n"
+find * -type d,f -empty | tr -d "*"
