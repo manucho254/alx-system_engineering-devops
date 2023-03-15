@@ -1,2 +1,2 @@
 #!/bin/bash
-cat | sort -k 7n | tail -n 10 | cut -f1
+cat | cut -f1 | uniq -ic | sort -k 1n | perl -ae ' printf "%-20s %s\n", $F[1]' | uniq | tail -n 11
