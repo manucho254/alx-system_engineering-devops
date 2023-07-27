@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# script to solve fizzbuzz problem
+
+num=1
+while [ $num -lt 101 ]
+do
+	by_3=$((num % 3))
+	by_5=$((num % 5))
+	if [ "$by_3" == "0" ] && [ "$by_5" == "0" ]
+	then
+		echo "FizzBuzz"
+	elif [ "$by_3" == "0" ]
+	then
+		echo "Fizz"
+	elif [ "$by_5" == "0" ]
+	then
+		echo "Buzz"
+	else
+		echo "$num"
+	fi
+	((num++))
+done
