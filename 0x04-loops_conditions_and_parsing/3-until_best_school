@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Script that displays Best School 10 times using until.
+
+range=10
+until [ $range == 0 ]
+do
+	echo "Best School"
+	range=$((range-1))
+done
