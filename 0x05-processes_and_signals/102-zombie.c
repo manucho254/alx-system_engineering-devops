@@ -36,7 +36,7 @@ int main(void)
 		{
 			/** this condition makes sure that we only create one child process */
 			printf("Zombie process created, PID: %d\n", getpid());
-			break;
+			exit(0);
 		}
 	}
 
