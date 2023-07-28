@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Script that Indefinitely writes I am alive! to the file /tmp/my_process
+
+num=0
+FILE="/tmp/my_process"
+
+# Indefinitely writes I am alive! to the file /tmp/my_process
+while [ "$num" == "0" ]
+do
+	echo "I am alive!" >> "$FILE";
+	sleep 2;
+	trap "echo manage_my_process stopped" SIGTERM SIGQUIT;
+done

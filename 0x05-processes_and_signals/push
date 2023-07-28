@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ ! -n "$1" ]
+if [ -z "$1" ]
 then
 	echo "\$ Please add a commit message!"
 else
