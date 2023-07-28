@@ -9,5 +9,4 @@ while [ "$num" == "0" ]
 do
 	echo "I am alive!" >> "$FILE";
 	sleep 2;
-	trap "echo manage_my_process stopped" SIGTERM SIGQUIT;
 done
