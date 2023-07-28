@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Script that displays To infinity and beyond indefinitely, I am invincible!!! when receiving a SIGTERM signal.
+
+FILE="/var/run/myscript.pid"
+echo "$$" > "$FILE"
+
+#function to delete FILE and exit application
+function leave()
+{
+	rm -rf "$FILE";
+	exit 0;
+}
+
+# infinate loop
+num=0
+while [ $num -eq 0 ]
+do
+	echo "To infinity and beyond";
+	sleep 2
+	trap "echo I hate the kill command;leave" SIGTERM
+	trap "echo Y U no love me?!;leave" SIGINT
+	trap "leave" SIGQUIT
+done
