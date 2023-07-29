@@ -25,7 +25,7 @@ PROCESS_PID_FILE="/var/run/my_process.pid"
 function start_my_process()
 {
 	bash "manage_my_process" &
-	sudo echo $$ > "$PROCESS_PID_FILE";
+	echo $$ > "$PROCESS_PID_FILE";
 }
 
 # function to stop my process
