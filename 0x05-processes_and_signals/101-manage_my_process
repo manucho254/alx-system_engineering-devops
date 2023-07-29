@@ -25,7 +25,7 @@ PROCESS_PID_FILE="/var/run/my_process.pid"
 function start_my_process()
 {
 	bash "manage_my_process" &
-	echo $$ > "$PROCESS_PID_FILE";
+	sudo echo $$ > "$PROCESS_PID_FILE";
 }
 
 # function to stop my process
@@ -42,7 +42,7 @@ function restart_my_process()
 	"start_my_process";
 }
 
-if [ -z "$1" ]
+if [ -z "$1" ] || [ "$1" != "start" ] && [ "$1" != "stop" ] && [ "$1" != "restart" ]
 then
 	echo "Usage: manage_my_process {start|stop|restart}";
 else
