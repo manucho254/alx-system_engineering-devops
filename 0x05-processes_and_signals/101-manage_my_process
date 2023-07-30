@@ -31,7 +31,7 @@ function start_my_process()
 # function to stop my process
 function stop_my_process()
 {
-	kill -19 -f "manage_my_process" > "/dev/null" 2>&1 ;
+	kill -f "manage_my_process" > "/dev/null" 2>&1 ;
 	rm -rf "$PROCESS_PID_FILE";
 }
 
