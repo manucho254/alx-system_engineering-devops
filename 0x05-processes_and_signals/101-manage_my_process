@@ -42,7 +42,10 @@ function restart_my_process()
 	"start_my_process";
 }
 
-if [ -z "$1" ] || [ "$1" != "start" ] && [ "$1" != "stop" ] && [ "$1" != "restart" ]
+if [ -z "$1" ]
+then
+	echo "Usage: manage_my_process {start|stop|restart}";
+elif [ "$1" != "start" ] && [ "$1" != "stop" ] && [ "$1" != "restart" ]
 then
 	echo "Usage: manage_my_process {start|stop|restart}";
 else
@@ -53,12 +56,12 @@ else
 	fi
 	if [ "$1" == "stop" ]
 	then
-		"stop_my_process";
 		echo "manage_my_process stopped";
+		"stop_my_process";
 	fi
 	if [ "$1" == "restart" ]
 	then
+		echo "manage_my_process restarted";
 		"restart_my_process";
-	echo "manage_my_process restarted";
 	fi
 fi
