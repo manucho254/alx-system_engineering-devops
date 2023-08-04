@@ -8,6 +8,6 @@ FILE="/etc/hosts"
 
 sudo cp "$FILE" ~/hosts.new
 sed -i "s/127.0.0.1     localhost/127.0.0.2     localhost/" ~/hosts.new
-sudo cp ~/hosts.new "$FILE"
+sudo cp -f ~/hosts.new "$FILE"
 # Resolve Facebook
 echo "8.8.88    facebook.com" >> "$FILE"
