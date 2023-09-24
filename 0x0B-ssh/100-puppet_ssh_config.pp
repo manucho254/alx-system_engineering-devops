@@ -10,7 +10,7 @@ file_line {'Setup identity':
     line   => '   IdentityFile  ~/.ssh/school',
 }
 
-file_line {'Setup identity':
+file_line {'Setup password':
     ensure => present,
     path   => '/etc/ssh/ssh_config',
     line   => '    PasswordAuthentication no',
