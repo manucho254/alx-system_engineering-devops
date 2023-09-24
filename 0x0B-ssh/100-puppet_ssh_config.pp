@@ -1,10 +1,10 @@
-file { 'Setup identity':
+# Create a client configuration
+
+file {'/etc/ssh/ssh_config':
     ensure => present,
-    path   => '/etc/ssh/ssh_config',
-    line   => '    PasswordAuthentication no',
 }
 
-file { 'Setup no Password':
+file_line {'Setup identity':
     ensure => present,
     path   => '/etc/ssh/ssh_config',
     line   => '   IdentityFile  ~/.ssh/school',
