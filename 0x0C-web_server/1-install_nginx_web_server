@@ -14,4 +14,4 @@ sudo rm -rf /var/www/html/index.nginx-debian.html
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
 # restart nginx
-sudo service restart nginx
+sudo service nginx restart
