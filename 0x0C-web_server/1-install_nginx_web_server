@@ -7,11 +7,11 @@ sudo apt-get -y install nginx
 # change port if 8080
 sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
 
-# remove default nginx file
-sudo rm -rf /var/www/html/index.nginx-debian.html
+# create html
+sudo touch /var/www/html/index.nginx-debian.html
 
 # create new file with new text
-echo "Hello World!" | sudo tee /var/www/html/index.html
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
 
 # restart nginx
 sudo service nginx restart
