@@ -10,8 +10,8 @@ sudo apt-get -y update
 #nginx start
 sudo service nginx start
 
-# change port if 8080
-sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+# allow https for nginx
+sudo ufw allow "Nginx Http"
 
 # create new file with new text
 echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
