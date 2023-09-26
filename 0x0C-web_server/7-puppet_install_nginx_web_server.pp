@@ -49,7 +49,7 @@ file { '/etc/nginx/sites-enabled/default':
     server_name _;
 
     # 404 error file
-    error_page 404 /error404.html;
+    #error_page 404 /error404.html;
 
     location / {
              # First attempt to serve request as file, then
