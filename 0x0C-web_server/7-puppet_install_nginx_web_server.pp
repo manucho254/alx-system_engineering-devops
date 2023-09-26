@@ -5,21 +5,31 @@ package { 'nginx':
         install_options => ['-y'],
 }
 
+# remove hmtl files
+exec { 'delete html files':
+        command => 'sudo rm -rf *.html',
+        path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
+}
+
+# start nginx
 exec { 'start nginx':
         command => 'sudo service nginx start',
         path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
 }
 
-file { '/var/www/html/index.nginx-debian.html':
-    ensure  => present,
-    content => 'Hello World!',
-}
-
+# add error 404 file
 file { '/var/www/html/error404.html':
     ensure  => present,
     content => 'Ceci n\'est pas une page',
 }
 
+# defautl html content
+file { '/var/www/html/index.html':
+        ensure  => present,
+        content => 'Hello World!',
+}
+
+# edit default file
 file { '/etc/nginx/sites-enabled/default':
         ensure  => present,
         path    => '/etc/nginx/sites-enabled/default',
@@ -27,6 +37,8 @@ file { '/etc/nginx/sites-enabled/default':
 'server {
     listen 80 default_server;
     listen [::]:80 default_server;
+
+    root /var/www/html;
 
     index index.html index.htm index.nginx-debian.html;
 
@@ -38,7 +50,7 @@ file { '/etc/nginx/sites-enabled/default':
     location / {
              # First attempt to serve request as file, then
              # as directory, then fall back to displaying a 404.
-             try_files \$uri \$uri/ =404;
+             try_files $uri $uri/ =404;
     }
 
     location /redirect_me {
@@ -48,6 +60,7 @@ file { '/etc/nginx/sites-enabled/default':
 ',
 }
 
+#reload nginx
 exec { 'restart nginx':
     command => 'sudo service nginx start',
     path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
