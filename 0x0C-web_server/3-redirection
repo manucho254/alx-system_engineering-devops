@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# script that installs nginx:
+# Configure your Nginx server so that /redirect_me is redirecting to another page.
 
 #get updates
 sudo apt-get -y update
@@ -8,15 +8,21 @@ sudo apt-get -y update
 sudo apt-get -y install nginx
 
 #nginx start
-service nginx start
+sudo service nginx start
 
 # allow https for nginx
 sudo ufw allow "Nginx Http"
 
-redirect_url='https://www.youtube.com/watch?v=QH2-TGUlwu4'
-comment='#Redirect to new url';
-new_string="location /redirect_me {\n$comment\n\nreturn 301 $redirect_url;\n"
-sudo sed -i "s/location / {/$new_string/" /etc/nginx/sites-enabled/default
+echo "server {
+      location / {
+          # First attempt to serve request as file, then
+          # as directory, then fall back to displaying a 404.
+          try_files \$uri \$uri/ =404;
+      }
+      location /redirect_me {
+          return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+      }
+}" | sudo tee /etc/nginx/sites-enabled/default
 
 # restart nginx
-service nginx restart
+sudo service nginx restart;

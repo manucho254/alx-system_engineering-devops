@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+
+redirect_url='https://www.youtube.com/watch?v=QH2-TGUlwu4'
+comment='#Redirect to new url';
+string_to_replace="location / {"
+new_string="location /redirect_me {\n$comment\n\nreturn 301 $redirect_url;\n"
+
+echo "/$string_to_replace/$new_string/"
