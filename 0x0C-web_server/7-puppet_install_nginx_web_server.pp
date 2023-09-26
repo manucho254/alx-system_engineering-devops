@@ -4,12 +4,20 @@ package { 'nginx':
         install_options => ['-y'],
 }
 
-
 exec { 'start nginx':
         command => 'sudo service nginx start',
         path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
 }
 
+file { '/var/www/html/index.nginx-debian.html':
+    ensure  => present,
+    content => 'Hello World!',
+}
+
+file { '/var/www/html/error404.html':
+    ensure  => present,
+    content => 'Ceci n\'est pas une page',
+}
 
 file { '/etc/nginx/sites-enabled/default':
         ensure  => present,
@@ -37,4 +45,9 @@ file { '/etc/nginx/sites-enabled/default':
     }
 }
 ',
+}
+
+exec { 'restart nginx':
+    command => 'sudo service nginx start',
+    path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
 }
