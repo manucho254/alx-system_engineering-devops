@@ -17,16 +17,20 @@ exec { 'start nginx':
         path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
 }
 
-# add error 404 file
-file { '/var/www/html/error404.html':
-    ensure  => present,
-    content => 'Ceci n\'est pas une page',
-}
-
 # defautl html content
 file { '/var/www/html/index.html':
         ensure  => present,
-        content => 'Hello World!',
+        content =>
+'Hello World!
+',
+}
+
+# add error 404 file
+file { '/var/www/html/error404.html':
+    ensure  => present,
+    content =>
+'Ceci n\'est pas une page\n
+',
 }
 
 # edit default file
@@ -60,8 +64,8 @@ file { '/etc/nginx/sites-enabled/default':
 ',
 }
 
-#reload nginx
+#restart nginx
 exec { 'restart nginx':
-    command => 'sudo service nginx start',
+    command => 'sudo service nginx restart',
     path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
 }
