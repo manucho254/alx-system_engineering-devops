@@ -17,8 +17,8 @@ frontend localnodes
 
 backend manucho-servers
         balance roundrobin
-        server 103008-web-02 34.232.78.67:80 check
-        server 103008-web-01 52.204.99.18:80 check
+        server 103008-web-02 34.232.78.67 check
+        server 103008-web-01 52.204.99.18 check
 ' | sudo tee -a /etc/haproxy/haproxy.cfg
 
 sudo service haproxy start
