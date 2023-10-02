@@ -2,8 +2,8 @@
 #script to add custom header 
 
 #Install nginx
-sudo apt-get update && sudo apt-get upgrade
-sudo apt-get install nginx
+sudo apt-get -y update && sudo apt-get -y upgrade
+sudo apt-get install -y nginx
 
 # start nginx
 sudo service nginx start
