@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
+#script to add custom header 
 
+sudo sed -i 's/add_header X-Served-By $hostname;//' /etc/nginx/sites-enabled/default
+sudo sed -i 's/add_header X-Served-By $hostname;//' /etc/nginx/sites-available/default
 
-sudo sed -i 's/add_header X-Served-By $host;//' /etc/nginx/sites-enabled/default
-sudo sed -i 's/add_header X-Served-By $host;//' /etc/nginx/sites-available/default
+sudo sed -i 's/server_name _;/server_name _;\n\n\tadd_header X-Served-By $hostname;/' /etc/nginx/sites-enabled/default
+sudo sed -i 's/server_name _;/server_name _;\n\n\tadd_header X-Served-By $hostname;/' /etc/nginx/sites-available/default
 
-sudo sed -i 's/server_name _;/server_name _;\n\n\tadd_header X-Served-By $host;/' /etc/nginx/sites-enabled/default
-sudo sed -i 's/server_name _;/server_name _;\n\n\tadd_header X-Served-By $host;/' /etc/nginx/sites-available/default
+#restart nginx
 sudo service nginx restart
