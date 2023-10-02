@@ -7,7 +7,7 @@ package { 'nginx':
 
 # remove hmtl files
 exec { 'delete html files':
-        command => 'sudo rm -rf *.html',
+        command => 'sudo rm -rf /var/www/html/*.html',
         path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
 }
 
