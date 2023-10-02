@@ -29,7 +29,7 @@ file { '/var/www/html/index.html':
 file { '/var/www/html/error404.html':
     ensure  => present,
     content =>
-'Ceci n\'est pas une page\n
+'Ceci n\'est pas une page
 ',
 }
 
