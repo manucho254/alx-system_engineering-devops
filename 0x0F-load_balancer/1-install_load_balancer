@@ -10,12 +10,11 @@ sudo apt-get install haproxy=2.8.\*
 echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 
 echo '
-frontend localnodes
+frontend manuchos-backend
         bind *:80
-        mode http
-        default_backend nodes
+        default_backend manuchos-backed
 
-backend manucho-servers
+backend manuchos-backed
         balance roundrobin
         server 103008-web-02 34.232.78.67 check
         server 103008-web-01 52.204.99.18 check
