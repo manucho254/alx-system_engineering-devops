@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+curl -sI 34.232.78.67 | grep X-Served-By
+curl -sI 52.204.99.18 | grep X-Served-By
