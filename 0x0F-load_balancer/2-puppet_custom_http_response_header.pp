@@ -33,79 +33,30 @@ file { '/var/www/html/error404.html':
 ',
 }
 
-# edit sites-enabled file
-file { '/etc/nginx/sites-enabled/default':
-        ensure  => present,
-        path    => '/etc/nginx/sites-enabled/default',
-        content =>
-'server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
-
-        root /var/www/html;
-
-        index index.html index.htm index.nginx-debian.html;
-
-        server_name _;
-        
-        #Add custom headers
-        add_header X-Served-By $hostname;
-
-        # 404 error file
-        error_page 404 /error404.html;
-
-        location / {
-                # First attempt to serve request as file, then
-                # as directory, then fall back to displaying a 404.
-                try_files $uri $uri/ =404;
-        }
-
-        location /redirect_me {
-                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-        }
-}
-',
+exec { 'Remove header from sites enabled':
+        command => 'sudo sed -i "s/add_header X-Served-By $hostname;//" /etc/nginx/sites-enabled/default',
+        path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
 }
 
-
-# edit sites-available
-
-file { '/etc/nginx/sites-available/default':
-        ensure  => present,
-        path    => '/etc/nginx/sites-available/default',
-        content =>
-'server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
-
-        root /var/www/html;
-
-        index index.html index.htm index.nginx-debian.html;
-    
-        server_name _;
-
-        #Add custom headers
-        add_header X-Served-By $hostname;
-
-        # 404 error file
-        error_page 404 /error404.html;
-    
-        location / {
-                # First attempt to serve request as file, then
-                # as directory, then fall back to displaying a 404.
-                try_files $uri $uri/ =404;
-        }
-
-        # redirect user
-        location /redirect_me {
-                return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-        }
+exec { 'Remove header from sites available':
+        command => 'sudo sed -i "s/add_header X-Served-By $hostname;//" /etc/nginx/sites-available/default',
+        path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
 }
-',
+
+exec { 'Add header to sites enabled':
+        command => 'sudo sed -i "s/server_name _;/server_name _;\
+\n\n\tadd_header X-Served-By $hostname;/" /etc/nginx/sites-enabled/default',
+        path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
+}
+
+exec { 'Add header to sites available':
+        command => 'sudo sed -i "s/server_name _;/server_name _;\
+\n\n\tadd_header X-Served-By $hostname;/" /etc/nginx/sites-available/default',
+        path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
 }
 
 #restart nginx
 exec { 'restart nginx':
-    command => 'sudo service nginx restart',
-    path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
+        command => 'sudo service nginx restart',
+        path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
 }
