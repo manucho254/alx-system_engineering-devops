@@ -1,3 +1,9 @@
+#run updates and upgrades
+exec { 'run updates and upgrades':
+        command => 'sudo apt-get update -y && sudo apt-get upgrade -y',
+        path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env'],
+}
+
 #install nginx
 package { 'nginx':
         ensure          => installed,
@@ -66,7 +72,6 @@ file { '/etc/nginx/sites-enabled/default':
 }
 
 # edit sites-available
-
 file { '/etc/nginx/sites-available/default':
         ensure  => present,
         path    => '/etc/nginx/sites-available/default',
