@@ -8,14 +8,15 @@ sudo apt-get -y install haproxy
 echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
 
 echo '
-frontend manuchos-backend
-        bind *:80
-        default_backend manuchos-backed
+frontend manuchodev.tech
+    bind *:80
+    default_backend manuchos-backed
 
 backend manuchos-backed
-        balance roundrobin
-        server 103008-web-02 34.232.78.67 check
-        server 103008-web-01 52.204.99.18 check
+    balance roundrobin
+    mode http
+    server 103008-web-02 34.232.78.67 check
+    server 103008-web-01 52.204.99.18 check
 ' | sudo tee -a /etc/haproxy/haproxy.cfg
 
 sudo service haproxy start
