@@ -1,3 +1,9 @@
+# update and apgrade
+exec { 'update and upgrade system':
+        command => 'sudo apt-get -y update && sudo apt-get upgrade',
+        path    => ['/usr/bin', '/usr/sbin', '/usr/bin/env']
+}
+
 #install nginx
 package { 'nginx':
         ensure          => installed,
