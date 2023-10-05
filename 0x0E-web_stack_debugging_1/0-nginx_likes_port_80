@@ -4,6 +4,9 @@
 sudo service apache2 stop
 sudo apt-get -y update && sudo apt-get -y upgrade
 sudo apt-get -y install nginx
-sudo sed -i "s/^#\s+listen\s+localhost:\d+;/\tlisten   localhost:80;/g" /etc/nginx/nginx.conf
 
 sudo service nginx start
+
+sudo sed -i "s/^#\s+listen\s+localhost:\d+;/\tlisten   localhost:80;/g" /etc/nginx/nginx.conf
+
+sudo service nginx reload
