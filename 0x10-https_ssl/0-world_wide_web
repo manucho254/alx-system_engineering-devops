@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# Script that check a domain 
+
+subdomains="www lb-01 web-01 web-02"
+
+# print string
+function print() {
+    echo "$1" | awk '{ print "The subdomain " $1 " is a " $2 " record and points to " $3 }';
+}
+
+if [ -z "$2" ]
+then
+    for sub in $subdomains;
+    do
+        domain="$sub.$1"
+        line=$(dig "$domain" | grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
+        full="$sub $line"
+        print "$full"
+    done
+else
+    domain="$2.$1"
+    line=$(dig "$domain" | grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
+    full="$2 $line"
+    print "$full"
+fi
