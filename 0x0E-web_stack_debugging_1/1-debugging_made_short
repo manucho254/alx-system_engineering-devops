@@ -2,3 +2,4 @@
 # script to run nginx on port 80
 sudo cp -f /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo service nginx restart
+sudo pkill -o nginx
