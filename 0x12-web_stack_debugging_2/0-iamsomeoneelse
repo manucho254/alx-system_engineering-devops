@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Script that logins to another user and runs the whoami
+# command under the user passed as an argument
+
+su -c "$1"
+whoami
