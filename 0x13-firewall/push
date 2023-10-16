@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ ! -n "$1" ];
+then
+	echo "\$ Please add a commit message!"
+elif [ ! -n "$2"];
+then
+	echo "\$ please add a branch name"
+else
+	git add .
+	git commit -m "$1"
+	git push origin $2
+fi
