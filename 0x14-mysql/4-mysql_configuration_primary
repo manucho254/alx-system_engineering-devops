@@ -28,7 +28,6 @@
 
 [mysqld]
 log_bin         = /var/log/mysql/mysql-bin.log
-binlog_do_db    = tyrell_corp
 pid-file	= /var/run/mysqld/mysqld.pid
 socket		= /var/run/mysqld/mysqld.sock
 datadir		= /var/lib/mysql
@@ -40,6 +39,7 @@ server-id	= 1
 
 #logging
 log_bin		= /var/log/mysql/mysql-bin.log
+relay_log       = /var/log/mysql/mysql-relay-bin
 
 #db to replicate
 binlog_do_db	= tyrell_corp
