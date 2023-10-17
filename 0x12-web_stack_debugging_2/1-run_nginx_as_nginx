@@ -10,8 +10,8 @@ sudo sed -i "s/^user [A-Za-z]+;$/user	nginx;/" /etc/nginx/nginx.conf
 touch default
 
 print %s "server {
-        listen 80 default_server;
-	listen [::]:80 default_server;
+        listen 8080 default_server;
+	listen [::]:8080 default_server;
 
         root /var/www/html;
 
