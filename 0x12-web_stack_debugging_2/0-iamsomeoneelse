@@ -2,5 +2,5 @@
 # Script that logins to another user and runs the whoami
 # command under the user passed as an argument
 
-sudo "$1"
+su - "$1"
 whoami
