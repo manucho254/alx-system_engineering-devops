@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# Bash script that generates a MySQL dump and creates a compressed archive out of it
+
+file_name="$(date +"%d-%m-%Y").tar.gz"
+
+#create empty backup file
+touch backup.sql
+
+# dump mysql database
+mysqldump -u root tyrell_corp > backup.sql -p "$1"
+
+# compress backup to taz.gz file
+sudo tar -czf "$file_name" backup.sql
