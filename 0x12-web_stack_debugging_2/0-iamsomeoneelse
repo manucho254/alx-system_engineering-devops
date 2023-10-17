@@ -2,5 +2,4 @@
 # Script that logins to another user and runs the whoami
 # command under the user passed as an argument
 
-su - "$1"
-whoami
+su -c "whoami" "$1"
