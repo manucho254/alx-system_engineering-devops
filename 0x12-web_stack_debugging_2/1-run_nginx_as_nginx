@@ -2,35 +2,6 @@
 #nginx must be running as nginx user
 #nginx must be listening on all active IPs on port 8080
 
-sudo apt-get update -y
-sudo apt-get install nginx -y
-
 sudo sed -i "s/^user [A-Za-z]+;$/user	nginx;/" /etc/nginx/nginx.conf
-
-touch default
-
-print %s "server {
-        listen 8080 default_server;
-	listen [::]:8080 default_server;
-
-        root /var/www/html;
-
-        index index.html index.htm index.nginx-debian.html;
-
-	server_name _;
-
-	location / {
-		# First attempt to serve request as file, then
-		# as directory, then fall back to displaying a 404.
-		try_files \$uri \$uri/ =404;
-	}
-}" > default
-
-
-# Remove and replace existing configurations
-sudo rm -rf /etc/nginx/sites-available/default
-sudo rm -rf /etc/nginx/sites-enabled/default
-sudo mv default /etc/nginx/sites-available/
-sudo ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-
+sudo sed -i "s/80/8080/g" /etc/nginx/sites-available/default
 service nginx restart
