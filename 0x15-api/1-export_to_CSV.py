@@ -44,7 +44,7 @@ def export_to_csv(user: dict, tasks: list) -> None:
     file_name = "{}.csv".format(user_id)
 
     with open(file_name, "a") as file:
-        writer = csv.writer(file)
+        writer = csv.writer(file, quoting=csv.QUOTE_ALL, quotechar='"')
         for task in tasks:
             status = task.get("completed")  # completest status
             title = task.get("title")  # task title
