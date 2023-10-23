@@ -40,7 +40,7 @@ def export_to_csv(user: dict, tasks: list) -> None:
              tasks: a list of done tasks
     """
     user_id = user.get("id")
-    name = user.get("name")
+    name = user.get("username")
     file_name = "{}.csv".format(user_id)
 
     with open(file_name, "a") as file:
@@ -86,4 +86,5 @@ if __name__ == "__main__":
     for task in done_tasks:
         print("\t {}".format(task.get("title")))
 
-    export_to_csv(user, all_tasks)
+    tmp_user = {"username": user.get("username"), "id": user.get("id")}
+    export_to_csv(tmp_user, all_tasks)
