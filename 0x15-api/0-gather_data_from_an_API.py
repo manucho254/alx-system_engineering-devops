@@ -63,4 +63,4 @@ if __name__ == "__main__":
                                                           number_of_tasks))
 
     for task in done_tasks:
-        print(" \t{}".format(task.get("title")))
+        print("\t {}".format(task.get("title")))
