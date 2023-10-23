@@ -19,9 +19,9 @@
     TASK_TITLE (with 1 tabulation and 1 space before the TASK_TITLE)
 
 """
+import csv
 import requests
 import sys
-import csv
 
 
 def get_data(url: str) -> dict:
