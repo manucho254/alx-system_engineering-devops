@@ -40,4 +40,7 @@ def count_words(subreddit, word_list, hot_list=[], after=None):
             for word in word_list:
                 expression = r"\b{}\b".format(word.lower())
                 matches = re.findall(expression, all_titles)
-                print("{}: {}".format(word, len(matches)))
+                count = len(matches)
+
+                if count > 0:
+                    print("{}: {:d}".format(word, count))
