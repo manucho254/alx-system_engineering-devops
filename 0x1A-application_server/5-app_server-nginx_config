@@ -46,6 +46,10 @@ server {
 
 	server_name _;
 
+        location /static/ {
+		proxy_pass http://127.0.0.1:5003/static/;
+        }
+
 	location / {
 	   	# First attempt to serve request as file, then
         	# as directory, then fall back to displaying a 404.
@@ -79,11 +83,7 @@ server {
                set $upstream ...;
                proxy_pass http://127.0.0.1:5002;
         }
-
-        # static files
-        location /static/ {
-                alias /home/ubuntu/AirBnB_clone_v4/web_dynamic;
-        }
+        
 }
 
 
