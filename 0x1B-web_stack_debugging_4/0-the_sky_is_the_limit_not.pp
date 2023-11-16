@@ -20,7 +20,7 @@ exec { 'fix--for-nginx':
   path    => ['/usr/bin', '/usr/sbin', '/bin'],
 }
 
-exec {'Restart nginx':
-  command => 'sudo service nginx restart',
-  path    => ['/usr/bin', '/usr/sbin', '/bin'],
+-> exec { 'Restart nginx':
+  command => '/etc/init.d/nginx restart',
+  path    => '/etc/init.d/'
 }
