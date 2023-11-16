@@ -1,8 +1,6 @@
 [Unit]
 Description=Gunicorn instance to serve airbnb clone
 After=network.target
-StandardOutput=/tmp/airbnb-error.log
-StandardError=/tmp/airbnb-access.log
 
 [Service]
 User=ubuntu
@@ -13,7 +11,7 @@ Environment="HBNB_MYSQL_PWD=hbnb_dev_pwd"
 Environment="HBNB_MYSQL_HOST=localhost"
 Environment="HBNB_MYSQL_DB=hbnb_dev_db"
 Environment="HBNB_TYPE_STORAGE=db"
-ExecStart=/home/ubuntu/.local/bin/gunicorn --workers 3 --bind 0.0.0.0:5003 --error-logfile /tmp/airbnb-error.log --access-logfile /tmp/airbnb-access.log web_dynamic.2-hbnb:app
+ExecStart=gunicorn --workers 3 --bind 0.0.0.0:5003 --error-logfile /tmp/airbnb-error.log --access-logfile /tmp/airbnb-access.log web_dynamic.2-hbnb:app
 ExecReload=/bin/kill -s HUP $MAINPID
 KillMode=mixed
 TimeoutStopSec=5
